@@ -59,6 +59,8 @@ class ControlGrowing(Action):
         #snake.turn_head(self._direction)
 
         #my_list = [10, 25, 35, 50, 65, 80, 95, 105, 115, 125, 140, 155, 170]
-        if  self._count == 10:
+        if  self._count == 12:
+            score = cast.get_first_actor("scores")
+            score.add_points(1)
             snake = snake.grow_tail(1)
             self._count = 0

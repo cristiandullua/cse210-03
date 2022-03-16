@@ -54,7 +54,7 @@ class Snake(Actor):
     
     def _prepare_body(self):
         x = int(random.randint(0, constants.MAX_X))
-        y = int(constants.MAX_Y / 2)
+        y = int(random.randint(0, constants.MAX_Y))
 
         for i in range(constants.SNAKE_LENGTH):
             position = Point(x - i * constants.CELL_SIZE, y)

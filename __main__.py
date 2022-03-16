@@ -21,8 +21,11 @@ def main():
     cast = Cast()
     cast.add_actor("snakes", Snake(constants.RED))
     cast.add_actor("snake2", Snake(constants.GREEN))
-    cast.add_actor("scores", Score())
-   
+    cast.add_actor("scores", Score("Player 1"))
+    score_2 = Score("Player 2")
+    score_2.set_position(Point(constants.MAX_X - constants.CELL_SIZE * len(score_2.get_text()), 0))
+    cast.add_actor("scores", score_2)
+
     # start the game
     keyboard_service = KeyboardService()
     video_service = VideoService()

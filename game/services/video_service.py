@@ -46,14 +46,7 @@ class VideoService:
             x -= offset
             
         pyray.draw_text(text, x, y, font_size, color)
-        
-        p=750
-        z=0
-        
-        text="Score 0"
-        pyray.draw_text(text, p , z, font_size, color)
-        
-        
+
     def draw_actors(self, actors, centered=False):
         """Draws the text for the given list of actors on the screen.
 

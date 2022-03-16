@@ -1,6 +1,7 @@
 import constants
 from game.casting.actor import Actor
 from game.shared.point import Point
+import random
 
 
 class Snake(Actor):
@@ -52,7 +53,7 @@ class Snake(Actor):
         self._segments[0].set_velocity(velocity)
     
     def _prepare_body(self):
-        x = int(constants.MAX_X / 2)
+        x = int(random.randint(0, constants.MAX_X))
         y = int(constants.MAX_Y / 2)
 
         for i in range(constants.SNAKE_LENGTH):

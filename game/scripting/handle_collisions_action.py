@@ -86,4 +86,4 @@ class HandleCollisionsAction(Action):
                 for segment in segments:
                     segment.set_color(constants.WHITE)
 
-            script.get_all_actions().pop("update")
+            script.remove_actions("update")

@@ -38,23 +38,11 @@ class Script:
         if group in self._actions.keys():
             results = self._actions[group].copy()
         return results
-    
-    def get_all_actions(self):
-        """Gets all actions.
-        
-        Args:
 
-        Returns:
-            Dict: The actions in the object.
-        """
-        return self._actions
-
-    def remove_action(self, group, action):
+    def remove_actions(self, group):
         """Removes an action from the given group.
         
         Args:
             group (string): The name of the group.
-            action (Action): The action to remove.
         """
-        if group in self._actions:
-            self._actions[group].remove(action)
+        self._actions.pop(group)

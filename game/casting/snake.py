@@ -1,7 +1,6 @@
 import constants
 from game.casting.actor import Actor
 from game.shared.point import Point
-import random
 
 
 class Snake(Actor):
@@ -19,7 +18,6 @@ class Snake(Actor):
 
         self._segments = []
         self._prepare_body()
-
 
     def get_segments(self):
         return self._segments
@@ -56,13 +54,20 @@ class Snake(Actor):
         self._segments[0].set_velocity(velocity)
     
     def _prepare_body(self):
-        x = int(random.randint(0, constants.MAX_X))
-        y = int(random.randint(0, constants.MAX_Y))
+    
+    # Position the snake in the screen in different places according to its color
+        if self._color == constants.RED:
+            x = int(constants.MAX_X / 4)
+            y = int(constants.MAX_Y / 2)
+        if self._color == constants.GREEN:
+            x = int(constants.MAX_X / 4 * 3)
+            y = int(constants.MAX_Y / 2)
 
         for i in range(constants.SNAKE_LENGTH):
-            position = Point(x - i * constants.CELL_SIZE, y)
-            velocity = Point(1 * constants.CELL_SIZE, 0)
-            text = "8" if i == 0 else "#"
+            position = Point(x, y + i * constants.CELL_SIZE)
+        # Move SNAKES up to start
+            velocity = Point(0, -constants.CELL_SIZE)
+            text = "@" if i == 0 else "#"
 
             segment = Actor()
             segment.set_position(position)

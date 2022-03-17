@@ -28,3 +28,13 @@ class Score(Actor):
         """
         self._points += points
         self.set_text(f"{self._name}: {self._points}")
+
+    def get_name(self):
+        """Return the player name.
+        """
+        return self._name
+
+    def get_points(self):
+        """Return the player name.
+        """
+        return self._points

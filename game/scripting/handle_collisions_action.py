@@ -64,7 +64,8 @@ class HandleCollisionsAction(Action):
             cast (Cast): The cast of Actors in the game.
         """
         snakes = cast.get_actors("snakes")
-        
+        scores = cast.get_actors("scores")
+
         if self._is_game_over:
             for snake in snakes:
                 segments = snake.get_segments()
@@ -74,7 +75,10 @@ class HandleCollisionsAction(Action):
                 position = Point(x, y)
 
                 message = Actor()
-                message.set_text("Game Over!")
+            # set winner message
+                winner_message = scores[0].get_name() if scores[0].get_points() > 0 else scores[1].get_name()
+
+                message.set_text("Game Over! " + winner_message + " won")
                 message.set_position(position)
                 cast.add_actor("messages", message)
 

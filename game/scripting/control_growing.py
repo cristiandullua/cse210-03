@@ -29,7 +29,7 @@ class ControlGrowing(Action):
         """
         self._counter = self._counter + 1
 
-        if self._counter == constants.FRAME_RATE * 5:
+        if self._counter == constants.FRAME_RATE * 2:
             self._counter = 0
             snakes = cast.get_actors("snakes")
 

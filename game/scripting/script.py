@@ -39,6 +39,16 @@ class Script:
             results = self._actions[group].copy()
         return results
     
+    def get_all_actions(self):
+        """Gets all actions.
+        
+        Args:
+
+        Returns:
+            Dict: The actions in the object.
+        """
+        return self._actions
+
     def remove_action(self, group, action):
         """Removes an action from the given group.
         

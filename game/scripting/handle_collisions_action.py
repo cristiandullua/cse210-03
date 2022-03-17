@@ -1,6 +1,7 @@
 import constants
 from game.casting.actor import Actor
 from game.scripting.action import Action
+from game.scripting.control_growing import ControlGrowing
 from game.shared.point import Point
 
 
@@ -28,7 +29,7 @@ class HandleCollisionsAction(Action):
         """
         if not self._is_game_over:
             self._handle_segment_collision(cast)
-            self._handle_game_over(cast)
+            self._handle_game_over(cast, script)
 
     def _handle_segment_collision(self, cast):
         """Sets the game over flag if the snake collides with one of its segments or with each other.
@@ -57,7 +58,7 @@ class HandleCollisionsAction(Action):
                 scores[0].add_points(1)
                 self._is_game_over = True
         
-    def _handle_game_over(self, cast):
+    def _handle_game_over(self, cast, script):
         """Shows the 'game over' message and turns the snake and food white if the game is over.
         
         Args:
@@ -84,3 +85,5 @@ class HandleCollisionsAction(Action):
 
                 for segment in segments:
                     segment.set_color(constants.WHITE)
+
+            script.get_all_actions().pop("update")

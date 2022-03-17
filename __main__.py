@@ -22,7 +22,7 @@ def main():
     cast.add_actor("snakes", Snake(constants.RED))
     cast.add_actor("snakes", Snake(constants.GREEN))
     cast.add_actor("scores", Score("Player 1"))
-        # create 2nd Score and set it to the right position 
+    # create 2nd Score and set it to the right position 
     score_2 = Score("Player 2")
     score_2.set_position(Point(constants.MAX_X - constants.CELL_SIZE * len(score_2.get_text()), 0))
     cast.add_actor("scores", score_2)

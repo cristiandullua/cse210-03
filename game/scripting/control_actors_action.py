@@ -2,6 +2,10 @@ import constants
 from game.scripting.action import Action
 from game.shared.point import Point
 
+RIGHT = Point(constants.CELL_SIZE, 0)
+LEFT = Point(-constants.CELL_SIZE, 0)
+UP = Point(0, -constants.CELL_SIZE)
+DOWN = Point(0, constants.CELL_SIZE)
 
 class ControlActorsAction(Action):
     """
@@ -31,41 +35,37 @@ class ControlActorsAction(Action):
             script (Script): The script of Actions in the game.
         """
     # Controls for 1st snake         
-        # left
-        if self._keyboard_service.is_key_down('a'):
-            self._direction_1 = Point(-constants.CELL_SIZE, 0)
-        
-        # right
-        if self._keyboard_service.is_key_down('d'):
-            self._direction_1 = Point(constants.CELL_SIZE, 0)
-        
-        # up
-        if self._keyboard_service.is_key_down('w'):
-            self._direction_1 = Point(0, -constants.CELL_SIZE)
-        
-        # down
-        if self._keyboard_service.is_key_down('s'):
-            self._direction_1 = Point(0, constants.CELL_SIZE)
-
         snake_1 = cast.get_actors("snakes")[0]
+        
+        # Avoid snake trailing back on itself
+        if self._keyboard_service.is_key_down('a') and snake_1.get_head().get_velocity() != RIGHT:
+            self._direction_1 = LEFT
+        
+        if self._keyboard_service.is_key_down('d') and snake_1.get_head().get_velocity() != LEFT:
+            self._direction_1 = RIGHT
+        
+        if self._keyboard_service.is_key_down('w') and snake_1.get_head().get_velocity() != DOWN:
+            self._direction_1 = UP
+        
+        if self._keyboard_service.is_key_down('s') and snake_1.get_head().get_velocity() != UP:
+            self._direction_1 = DOWN
+
         snake_1.turn_head(self._direction_1)
 
     # Controls for 2nd snake
-         # left
-        if self._keyboard_service.is_key_down('j'):
-            self._direction_2 = Point(-constants.CELL_SIZE, 0)
-        
-        # right
-        if self._keyboard_service.is_key_down('l'):
-            self._direction_2 = Point(constants.CELL_SIZE, 0)
-        
-        # up
-        if self._keyboard_service.is_key_down('i'):
-            self._direction_2 = Point(0, -constants.CELL_SIZE)
-        
-        # down
-        if self._keyboard_service.is_key_down('k'):
-            self._direction_2 = Point(0, constants.CELL_SIZE)
-        
         snake_2 = cast.get_actors("snakes")[1]
+
+        # Avoid snake trailing back on itself
+        if self._keyboard_service.is_key_down('j') and snake_2.get_head().get_velocity() != RIGHT:
+            self._direction_2 = LEFT        
+
+        if self._keyboard_service.is_key_down('l') and snake_2.get_head().get_velocity() != LEFT:
+            self._direction_2 = RIGHT
+        
+        if self._keyboard_service.is_key_down('i') and snake_2.get_head().get_velocity() != DOWN:
+            self._direction_2 = UP
+        
+        if self._keyboard_service.is_key_down('k') and snake_2.get_head().get_velocity() != UP:
+            self._direction_2 = DOWN
+        
         snake_2.turn_head(self._direction_2)
